@@ -21,7 +21,7 @@ GROUP_SIZE = 50
 URL = "https://api.cognitive.microsoft.com/bing/v7.0/images/search"
 
 # Build a list of exceptions to handle
-EXCEPTIONS = set([IOError, FileNotFoundError, exceptions.RequestException,
+EXCEPTIONS = set([IOError, exceptions.RequestException,
             exceptions.HTTPError, exceptions.ConnectionError, exceptions.Timeout])
 
 # Store the search term in a convenience variable then set the headers and search parameters
