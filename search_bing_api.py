@@ -1,4 +1,4 @@
-from request import exceptions
+from requests import exceptions
 import argparse
 import requests
 import cv2
