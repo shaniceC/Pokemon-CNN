@@ -21,7 +21,7 @@ GROUP_SIZE = 50
 URL = "https://api.cognitive.microsoft.com/bing/v7.0/images/search"
 
 # Build a list of exceptions to handle
-EXCEPTIONS = set([IOError, exceptions.RequestException,
+EXCEPTIONS = set([IOError, FileNotFoundError, exceptions.RequestException,
             exceptions.HTTPError, exceptions.ConnectionError, exceptions.Timeout])
 
 # Store the search term in a convenience variable then set the headers and search parameters
@@ -87,8 +87,10 @@ for offset in range(0, estNumResults, GROUP_SIZE):
         # so it should be ignored
         if image is None:
             print("[INFO] deleting: {}".format(p))
-            os.remove(p)
-            continue
+            try: 
+                os.remove(p)
+            except FileNotFoundError:
+                continue
 
         # Update the counter
         total += 1
